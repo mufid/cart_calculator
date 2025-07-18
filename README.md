@@ -1,5 +1,7 @@
 # Acme Widget Co
 
+Also available via YARD dcoumentation: [https://mufid.github.io/cart_calculator/doc/index.html](https://mufid.github.io/cart_calculator/doc/index.html)
+
 ## Original Instruction
 
 Acme Widget Co are the leading provider of made up widgets and they’ve contracted you to create a proof of concept
