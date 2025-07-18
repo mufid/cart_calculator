@@ -13,7 +13,7 @@ module CartCalculator
 
     def add(product_code)
       product = catalogue[product_code]
-      raise ArgumentError, "Product #{product_code} not found" unless product
+      raise CartCalculator::Error, "Product #{product_code} not found" unless product
 
       if items[product_code]
         items[product_code].increment_quantity
@@ -29,8 +29,6 @@ module CartCalculator
       
       round_cent(subtotal - discount + delivery)
     end
-
-    private
 
     def calculate_subtotal
       items.values.sum { |item| item.subtotal }
@@ -51,6 +49,14 @@ module CartCalculator
       
       discount
     end
+
+    def delivery_charge
+      subtotal = calculate_subtotal
+      discount = calculate_discount
+      calculate_delivery_charge(subtotal - discount)
+    end
+
+    private
 
     def calculate_delivery_charge(order_total)
       delivery_rules.each do |rule|

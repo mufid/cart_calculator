@@ -2,11 +2,7 @@ require 'spec_helper'
 
 describe CartCalculator::Cart do
   let(:catalogue) do
-    {
-      'R01' => CartCalculator::Product.new(code: 'R01', name: 'Red Widget', price: '32.95'),
-      'G01' => CartCalculator::Product.new(code: 'G01', name: 'Green Widget', price: '24.95'),
-      'B01' => CartCalculator::Product.new(code: 'B01', name: 'Blue Widget', price: '7.95')
-    }
+    CartCalculator::Catalogue::DEFAULT
   end
 
   let(:delivery_rules) do
@@ -38,7 +34,7 @@ describe CartCalculator::Cart do
     end
 
     it "raises an error when adding an invalid product code" do
-      expect { cart.add('INVALID') }.to raise_error(ArgumentError, "Product INVALID not found")
+      expect { cart.add('INVALID') }.to raise_error(CartCalculator::Error, "Product INVALID not found")
     end
   end
 
