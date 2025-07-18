@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.37
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "README";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'>
+<h1 id="label-Acme+Widget+Co">Acme Widget Co</h1>
+
+<h2 id="label-Original+Instruction">Original Instruction</h2>
+
+<p>Acme Widget Co are the leading provider of made up widgets and they’ve contracted you to create a proof of concept for their new sales system. They sell three products:</p>
+
+<table role="table">
+<thead>
+<tr>
+<th>Product</th>
+<th>Code</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Red Widget</td>
+<td>R01</td>
+<td>$32.95</td>
+</tr>
+<tr>
+<td>Green Widget</td>
+<td>G01</td>
+<td>$24.95</td>
+</tr>
+<tr>
+<td>Blue Widget</td>
+<td>B01</td>
+<td>$7.95</td>
+</tr>
+</tbody>
+</table>
+
+<p>To incentivise customers to spend more, delivery costs are reduced based on the amount spent.</p>
+<ul><li>
+<p>Orders under $50 cost $4.95.</p>
+</li><li>
+<p>For orders under $90, delivery costs $2.95.</p>
+</li><li>
+<p>Orders of $90 or more have free delivery.</p>
+</li></ul>
+
+<p>They are also experimenting with special offers. The initial offer will be “buy one red widget, get the second half price”.</p>
+
+<p>Your job is to implement the basket which needs to have the following interface</p>
+<ul><li>
+<p>It is initialised with the product catalogue, delivery charge rules, and offers (the format of how these are passed it up to you)</p>
+</li><li>
+<p>It has an add method that takes the product code as a parameter.</p>
+</li><li>
+<p>It has a total method that returns the total cost of the basket, taking into account the delivery and offer rules.</p>
+</li></ul>
+
+<p>Here are some example baskets and expected totals to help you check your implementation.</p>
+
+<table role="table">
+<thead>
+<tr>
+<th>Products</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B01, G01</td>
+<td>$37.85</td>
+</tr>
+<tr>
+<td>R01, R01</td>
+<td>$54.37</td>
+</tr>
+<tr>
+<td>R01, G01</td>
+<td>$60.85</td>
+</tr>
+<tr>
+<td>B01, B01, R01, R01, R01</td>
+<td>$98.27</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="label-Implementation">Implementation</h2>
+
+<h3 id="label-Usage">Usage</h3>
+
+<p>The cart calculator is implemented as a command-line interface (CLI) application. To use it:</p>
+
+<h4 id="label-Running+the+CLI">Running the CLI</h4>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Run the interactive cart calculator
+</span><span class='id identifier rubyid_bin'>bin</span><span class='op'>/</span><span class='id identifier rubyid_cart_calculator'>cart_calculator</span>
+</code></pre>
+
+<p>The CLI provides a REPL (Read-Eval-Print Loop) interface where you can:</p>
+<ul><li>
+<p>Enter product codes separated by spaces (e.g., <code>B01 G01 R01</code>)</p>
+</li><li>
+<p>View the order summary with subtotal, discounts, delivery charges, and grand total</p>
+</li><li>
+<p>Type <code>exit</code> to quit the application</p>
+</li></ul>
+
+<h4 id="label-Example+Session">Example Session</h4>
+
+<pre class="code ruby"><code class="ruby">$ bin/cart_calculator
+Welcome to Cart Calculator!
+Enter product codes separated by spaces (e.g., &#39;B01 B01 G01&#39;)
+Type &#39;exit&#39; to quit
+
+&gt; B01 G01
+
+Order Summary:
+----------------------------------------
+Blue Widget (B01) x1: $7.95
+Green Widget (G01) x1: $24.95
+----------------------------------------
+Subtotal: $32.90
+Delivery: $4.95
+----------------------------------------
+Grand Total: $37.85
+
+&gt; R01 R01
+
+Order Summary:
+----------------------------------------
+Red Widget (R01) x2: $65.90
+----------------------------------------
+Subtotal: $65.90
+Discount: -$16.48
+Delivery: $4.95
+----------------------------------------
+Grand Total: $54.37
+
+&gt; exit
+Thank you for using Cart Calculator!
+</code></pre>
+
+<h3 id="label-Architecture">Architecture</h3>
+
+<p>The application follows a modular architecture with clear separation of concerns:</p>
+
+<h4 id="label-Models+Module">Models Module</h4>
+
+<p>All domain models are organized under the <code>CartCalculator::Models</code> namespace:</p>
+<ul><li>
+<p><strong>Product</strong>: Represents a product with code, name, and price (stored as BigDecimal for precision)</p>
+</li><li>
+<p><strong>LineItem</strong>: Represents a product in the cart with its quantity</p>
+</li><li>
+<p><strong>Cart</strong>: The main domain model that orchestrates products, discounts, and delivery charges</p>
+</li><li>
+<p><strong>Catalogue</strong>: Provides the product inventory (currently as a DEFAULT constant)</p>
+</li><li>
+<p><strong>DeliveryRule</strong>: Defines delivery charge rules based on order amount ranges</p>
+</li></ul>
+
+<p>This namespace separation clearly distinguishes domain models from infrastructure concerns like CLI or persistence.</p>
+
+<h4 id="label-CLI+Module">CLI Module</h4>
+
+<p>The CLI functionality is separated into two classes:</p>
+<ol><li>
+<p><strong>Runner</strong>: Orchestrates the REPL loop and display logic</p>
+</li><li>
+<p><strong>IO</strong>: Wraps all input/output operations</p>
+</li></ol>
+
+<p><strong>Why separate IO from Runner?</strong></p>
+<ul><li>
+<p><strong>Testability</strong>: The IO wrapper allows easy unit testing with mock objects</p>
+</li><li>
+<p><strong>Flexibility</strong>: Input/output can be redirected (files, network streams) without changing the runner</p>
+</li><li>
+<p><strong>Single Responsibility</strong>: Each class has one clear purpose</p>
+</li><li>
+<p><strong>Dependency Injection</strong>: The runner accepts an IO object, making it configurable and testable</p>
+</li></ul>
+
+<h4 id="label-Key+Design+Principles">Key Design Principles</h4>
+<ol><li>
+<p><strong>Dependency Injection</strong>: Cart accepts its dependencies (catalogue, delivery rules, offers) through constructor injection</p>
+</li><li>
+<p><strong>Configuration through Constants</strong>: DEFAULT constants provide sensible defaults while allowing custom configurations</p>
+</li><li>
+<p><strong>Immutable Configuration</strong>: Frozen constants ensure configuration integrity</p>
+</li><li>
+<p><strong>Separation of Concerns</strong>: Each class has a single, well-defined responsibility</p>
+</li></ol>
+
+<h3 id="label-Tests">Tests</h3>
+
+<p>The test suite includes comprehensive unit tests and integration tests:</p>
+
+<h4 id="label-Unit+Tests">Unit Tests</h4>
+
+<p><strong>Product Tests</strong> (<code>spec/cart_calculator/product_spec.rb</code>):</p>
+<ul><li>
+<p>Validates product initialization with code, name, and price</p>
+</li><li>
+<p>Ensures price is stored as BigDecimal for precision</p>
+</li><li>
+<p>Validates that price must be passed as a string</p>
+</li></ul>
+
+<p><strong>LineItem Tests</strong> (<code>spec/cart_calculator/line_item_spec.rb</code>):</p>
+<ul><li>
+<p>Tests initialization with quantity of 1</p>
+</li><li>
+<p>Validates quantity increment functionality</p>
+</li><li>
+<p>Tests subtotal calculation (price × quantity)</p>
+</li></ul>
+
+<p><strong>Cart Tests</strong> (<code>spec/cart_calculator/cart_spec.rb</code>):</p>
+<ul><li>
+<p>Tests adding products to cart</p>
+</li><li>
+<p>Validates quantity increment for duplicate products</p>
+</li><li>
+<p>Tests error handling for invalid product codes</p>
+</li><li>
+<p>Validates all example calculations from requirements</p>
+</li><li>
+<p>Tests delivery charge rules for different order amounts</p>
+</li><li>
+<p>Validates red widget discount offer</p>
+</li></ul>
+
+<p><strong>CLI Runner Tests</strong> (<code>spec/cart_calculator/cli/runner_spec.rb</code>):</p>
+<ul><li>
+<p>Tests the REPL flow with mocked IO</p>
+</li><li>
+<p>Validates order processing and display</p>
+</li><li>
+<p>Tests error handling for invalid products</p>
+</li><li>
+<p>Tests empty input handling</p>
+</li><li>
+<p>Validates discount display</p>
+</li></ul>
+
+<h4 id="label-Integration+Tests">Integration Tests</h4>
+
+<p>The integration test suite (<code>spec/cart_calculator/integration/integration_spec.rb</code>) uses an innovative file-based approach:</p>
+<ul><li>
+<p><strong>Example Files</strong>: Input/output pairs in <code>spec/examples/</code> (e.g., <code>01-in.txt</code> and <code>01-out.txt</code>)</p>
+</li><li>
+<p><strong>Dynamic Test Generation</strong>: Automatically creates a test for each example file pair</p>
+</li><li>
+<p><strong>Full Stack Testing</strong>: Tests the entire application flow from input to output</p>
+</li><li>
+<p><strong>Easy to Extend</strong>: New test cases can be added by simply creating new file pairs</p>
+</li></ul>
+
+<p>This approach ensures the CLI behaves exactly as expected in real-world usage.</p>
+
+<h3 id="label-Documentation">Documentation</h3>
+
+<p>The codebase includes comprehensive documentation using YARD comments. All classes and methods are documented with:</p>
+<ul><li>
+<p>Clear descriptions of purpose and functionality</p>
+</li><li>
+<p>Parameter types and return values</p>
+</li><li>
+<p>Usage examples</p>
+</li><li>
+<p>Architecture notes for key classes (Cart and Runner)</p>
+</li></ul>
+
+<h4 id="label-Generating+Documentation">Generating Documentation</h4>
+
+<p>To generate the HTML documentation:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Install YARD if not already installed
+</span><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_yard'>yard</span>
+
+<span class='comment'># Generate documentation
+</span><span class='id identifier rubyid_yard'>yard</span> <span class='id identifier rubyid_doc'>doc</span>
+</code></pre>
+
+<h4 id="label-Viewing+Documentation">Viewing Documentation</h4>
+
+<p>After generation, the documentation is available in the <code>doc/</code> folder:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Open the documentation in your browser
+</span><span class='id identifier rubyid_open'>open</span> <span class='id identifier rubyid_doc'>doc</span><span class='op'>/</span><span class='id identifier rubyid_index'>index</span><span class='period'>.</span><span class='id identifier rubyid_html'>html</span>
+</code></pre>
+
+<p>The documentation includes:</p>
+<ul><li>
+<p><strong>Class Overview</strong>: All classes with their responsibilities</p>
+</li><li>
+<p><strong>Method Documentation</strong>: Detailed information about each method</p>
+</li><li>
+<p><strong>Code Examples</strong>: Runnable examples showing how to use each component</p>
+</li><li>
+<p><strong>Architecture Notes</strong>: In-depth explanations of design decisions for Cart and Runner classes</p>
+</li></ul>
+
+<p>YARD documentation provides a navigable, searchable reference that complements this README with detailed API documentation.</p>
+
+<h3 id="label-Assumptions">Assumptions</h3>
+
+<p>The current implementation makes several assumptions that deviate from typical Rails practices:</p>
+
+<p><strong>Static Configuration via Constants</strong></p>
+<ul><li>
+<p>Products, delivery rules, and offers are defined as frozen constants</p>
+</li><li>
+<p><strong>Rationale</strong>: Simplifies the proof of concept</p>
+</li><li>
+<p><strong>Alternative</strong>: Could easily be refactored to accept dynamic configuration or read from a database</p>
+</li></ul>
+
+<p><strong>No Persistence Layer</strong></p>
+<ul><li>
+<p>The cart exists only in memory during the CLI session</p>
+</li><li>
+<p><strong>Alternative</strong>: Could implement a repository pattern to persist carts to SQL/NoSQL databases</p>
+</li></ul>
+
+<p><strong>Simple Offer System</strong></p>
+<ul><li>
+<p>Currently hardcoded for “red widget half price” offer</p>
+</li><li>
+<p><strong>Alternative</strong>: Could implement a strategy pattern for flexible offer rules</p>
+</li></ul>
+
+<p><strong>BigDecimal for All Monetary Values</strong></p>
+<ul><li>
+<p>Prices are required as strings to maintain precision</p>
+</li><li>
+<p><strong>Rationale</strong>: Prevents floating-point precision issues</p>
+</li><li>
+<p><strong>Note</strong>: This is actually a best practice, not a deviation</p>
+</li></ul>
+
+<p><strong>No Authentication or Multi-tenancy</strong></p>
+<ul><li>
+<p>Single-user CLI application</p>
+</li><li>
+<p><strong>Alternative</strong>: Could add user sessions and multi-cart support</p>
+</li></ul>
+
+<p><strong>Minimal Error Handling</strong></p>
+<ul><li>
+<p>Only handles invalid product codes</p>
+</li><li>
+<p><strong>Alternative</strong>: Could add validation for negative quantities, concurrent modifications, etc.</p>
+</li></ul>
+
+<p><strong>No Internationalization</strong></p>
+<ul><li>
+<p>Currency is hardcoded as dollars</p>
+</li><li>
+<p><strong>Alternative</strong>: Could use Money gem or similar for multi-currency support</p>
+</li></ul>
+
+<p>These assumptions are appropriate for a proof of concept but would need to be addressed for a production system. The modular architecture makes it easy to evolve the system as requirements grow.</p>
+</div></div>
+
+      <div id="footer">
+  Generated on Fri Jul 18 16:29:08 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.4.4).
+</div>
+
+    </div>
+  </body>
+</html>

@@ -23,6 +23,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-support (3.13.4)
+    yard (0.9.37)
 
 PLATFORMS
   arm64-darwin-24
@@ -33,6 +34,7 @@ DEPENDENCIES
   cart_calculator!
   rake (~> 13.0)
   rspec (~> 3.0)
+  yard (~> 0.9)
 
 BUNDLED WITH
    2.7.0
