@@ -1,5 +1,5 @@
-RSpec.describe CartCalculator::LineItem do
-  let(:product) { CartCalculator::Product.new(code: 'B01', name: 'Blue Widget', price: '7.95') }
+RSpec.describe CartCalculator::Models::LineItem do
+  let(:product) { CartCalculator::Models::Product.new(code: 'B01', name: 'Blue Widget', price: '7.95') }
   subject(:line_item) { described_class.new(product) }
 
   describe "#initialize" do

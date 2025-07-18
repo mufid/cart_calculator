@@ -3,4 +3,5 @@
 require "bundler/setup"
 require "cart_calculator"
 
-CartCalculator::CLI::Runner.new.run
+io = CartCalculator::CLI::IO.new
+CartCalculator::CLI::Runner.new(io).run

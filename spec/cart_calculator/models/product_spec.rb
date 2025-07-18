@@ -1,4 +1,4 @@
-RSpec.describe CartCalculator::Product do
+RSpec.describe CartCalculator::Models::Product do
   subject(:product) do
     described_class.new(code: 'R01', name: 'Red Widget', price: '32.95')
   end

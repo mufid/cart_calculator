@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe CartCalculator::Cart do
+describe CartCalculator::Models::Cart do
   let(:catalogue) do
-    CartCalculator::Catalogue::DEFAULT
+    CartCalculator::Models::Catalogue::DEFAULT
   end
 
   let(:delivery_rules) do
-    CartCalculator::DeliveryRule::DEFAULT
+    CartCalculator::Models::DeliveryRule::DEFAULT
   end
 
   let(:offers) do
