@@ -1,0 +1,16 @@
+Welcome to Cart Calculator!
+Enter product codes separated by spaces (e.g., 'B01 B01 G01')
+Type 'exit' to quit
+
+> 
+Order Summary:
+----------------------------------------
+Red Widget (R01) x1: $32.95
+Green Widget (G01) x1: $24.95
+----------------------------------------
+Subtotal: $57.90
+Delivery: $2.95
+----------------------------------------
+Grand Total: $60.85
+
+> Thank you for using Cart Calculator!

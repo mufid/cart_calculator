@@ -1,0 +1,7 @@
+Welcome to Cart Calculator!
+Enter product codes separated by spaces (e.g., 'B01 B01 G01')
+Type 'exit' to quit
+
+> Error: Product INVALID not found
+
+> Thank you for using Cart Calculator!
