@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.4.4'
+        bundler-cache: true # runs 'bundle install' and caches installed gems
+
+    - name: Run RSpec tests
+      run: bundle exec rspec
+
+    - name: Run RSpec with format documentation
+      run: bundle exec rspec --format documentation
+      
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: rspec-results
+        path: |
+          coverage/
+          tmp/
